@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css" />
+        <style type="text/css">
+            body { width: 280px; margin: 0; padding: 0; }
+            form { margin-bottom: 5px; }
+            .input-append input { width: 238px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <ul class="nav nav-list">
+                <li class="nav-header" style="padding: 0">
+                    <form class="form-inline" id="location-form">
+                        <div class="input-append">
+                            <input class="input-xlarge" id="location" type="text"><button class="btn" type="submit">GO</button>
+                        </div>
+                    </form>
+                </li>
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Library</a>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" src="libs/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript">
+            // Prepend http:// if the given url is not started with http:// or https://
+            function fixUrl(url) {
+                if ( /^http:\/\//i.test(url) || /^https:\/\//i.test(url)) {
+                    return url
+                } else {
+                    return 'http://' + url;
+                }
+            }
+
+            $('#location-form').submit(function() {
+                var location = $.trim($('#location').val());
+                var url = fixUrl(location);
+                console.log('browsing ' + location);
+                chrome.windows.create({ url: url, width: 300, height: 500, type: 'panel' });
+            });
+        </script>
+    </body>
+</html>
