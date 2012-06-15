@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css" />
+        <style type="text/css">
+            body { margin: 0; padding: 0; overflow: hidden; }
+
+            .topbar {
+                width: 100%;
+                height: 28px;
+                background-color: #eeeeee; /* Old browsers */
+                background-repeat: repeat-x; /* Repeat the gradient */
+                background-image: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%); /* FF3.6+ */
+                background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+                background-image: -webkit-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* Chrome 10+,Safari 5.1+ */
+                background-image: -ms-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* IE10+ */
+                background-image: -o-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* Opera 11.10+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+                background-image: linear-gradient(top, #f5f5f5 0%,#eeeeee 100%); /* W3C */
+                border: 1px solid #e5e5e5;
+                -webkit-border-radius: 4px;
+                   -moz-border-radius: 4px;
+                        border-radius: 4px;
+            }
+
+            .topbar-fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
+                border-color: #d5d5d5;
+                border-width: 0 0 1px; /* drop the border on the fixed edges */
+                -webkit-border-radius: 0;
+                   -moz-border-radius: 0;
+                        border-radius: 0;
+                -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+                   -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+                        box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+                filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); /* IE6-9 */
+            }
+
+            .btn-toolbar {
+                margin: 0; 
+            }
+            
+            #location-form { display: inline; }
+            #location { width: 215px; }
+            #viewport { width: 100%; height: 370px; margin-top: 29px; }
+        </style>
+    </head>
+    <body>
+        <div class="topbar topbar-fixed">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn" href="#">&lt;</a>
+                    <a class="btn" href="#">&gt;</a>
+                    <form class="form-inline pull-left" id="location-form">
+                        <div class="input-append">
+                            <input class="input-large" id="location" type="text" placeholder="http://" /><button class="btn
+                                btn-info" type="submit">Go</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <iframe id="viewport" frameborder="0" src="about:blank"></iframe>
+        <script type="text/javascript" src="libs/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript">
+            var background = chrome.extension.getBackgroundPage();
+
+            // Prepend http:// if the given url is not started with http:// or https://
+            function fixUrl(url) {
+                if ( /^http:\/\//i.test(url) || /^https:\/\//i.test(url)) {
+                    return url
+                } else {
+                    return 'http://' + url;
+                }
+            }
+
+            $('#location-form').submit(function() {
+                var location = $.trim($('#location').val());
+                var url = fixUrl(location);
+                console.log('browsing: ' + url);
+                $('#viewport').attr('src', url);
+                $('#location').val(url);
+                return false;
+            });
+        </script>
+    </body>
+</html>
