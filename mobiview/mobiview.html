@@ -2,26 +2,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="mobiview.css" />
+        <link rel="stylesheet" href="css/mobiview.css" />
     </head>
     <body>
-        <div class="topbar topbar-fixed">
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                    <a class="btn" href="#">&lt;</a>
-                    <a class="btn" href="#">&gt;</a>
-                    <form class="form-inline pull-left" id="location-form">
-                        <div class="input-append">
-                            <input class="input-large" id="location" type="text" placeholder="http://" /><button class="btn
-                                btn-info" type="submit">Go</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="toolbar">
+                <button class="btn btn-backward" title="Go back">&lt;</button>
+                <button class="btn btn-forward" title="Go forward">&gt;</button>
+                <input  type="text" id="location" placeholder="http://" />
+                <button class="btn btn-go">Go</button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="viewport">
+                <iframe id="page" frameborder="0" src="about:blank"></iframe>
             </div>
         </div>
-        <iframe id="viewport" frameborder="0" src="about:blank"></iframe>
-        <script type="text/javascript" src="libs/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="mobiview.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/mobiview.js"></script>
     </body>
 </html>

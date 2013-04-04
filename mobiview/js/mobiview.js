@@ -9,12 +9,12 @@ function fixUrl(url) {
     }
 }
 
-$('#location-form').submit(function() {
+$('.btn-go').click(function() {
     var location = $.trim($('#location').val());
     var url = fixUrl(location);
     console.log(url);
     console.log('browsing: ' + url);
-    $('#viewport').attr('src', url);
+    $('#page').attr('src', url);
     $('#location').val(url);
     return false;
 });
