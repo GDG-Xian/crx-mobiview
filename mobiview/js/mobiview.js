@@ -9,7 +9,7 @@ function fixUrl(url) {
     }
 }
 
-$('.btn-go').click(function() {
+$('#form-location').submit(function() {
     var location = $.trim($('#location').val());
     var url = fixUrl(location);
     console.log(url);
