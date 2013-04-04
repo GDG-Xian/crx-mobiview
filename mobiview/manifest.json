@@ -11,6 +11,6 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-    "bookmarks", "tabs", "webRequest", "webRequestBlocking", "*://*/*"
+    "bookmarks", "tabs", "webRequest", "webRequestBlocking", "webNavigation", "*://*/*"
   ]
 }

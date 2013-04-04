@@ -18,3 +18,7 @@ $('#form-location').submit(function() {
     $('#location').val(url);
     return false;
 });
+
+background.register_handler('navigation', function(url) {
+    $('#location').val(url);
+});
