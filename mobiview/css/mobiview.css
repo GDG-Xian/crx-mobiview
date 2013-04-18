@@ -19,8 +19,7 @@ body { margin: 0; padding: 0; overflow: hidden; }
 }
 
 .toolbar .btn { }
-.toolbar .btn-forward,
-.toolbar .btn-backward { float: left; width: 25px; margin-right: 5px; }
+.toolbar .btn-history-go { float: left; width: 25px; margin-right: 5px; }
 .toolbar .btn-go { float: right; width: 30px; margin-left: 5px; }
 #location { position: absolute; width: auto; left: 65px; right: 40px; }
 
