@@ -23,18 +23,23 @@
     }
 
     function change_user_agent(user_agent_name) {
-        var user_agent_value = USER_AGENT_MAPPINGS[user_agent_name];
+        // Default user-agent is iPhone - iOS4
+        var user_agent_value = USER_AGENT_MAPPINGS[user_agent_name] || background.storage('options-user-agent-value');
+        $user_agent_name.val(user_agent_name);
         $user_agent_value.val(user_agent_value);
         $user_agent_value.prop('disabled', user_agent_name !== 'Other');
     }
 
     function save_settings() {
-        background.storage('options-user-agent', $user_agent_name.val()); 
-        background.storage('options-user-value', $user_agent_value.val()); 
+        background.storage('options-user-agent-name', $user_agent_name.val()); 
+        background.storage('options-user-agent-value', $user_agent_value.val()); 
         show_messages('Changes saved.');
     }
 
     function init_components() {
+        // Default user-agent is iPhone - iOS4
+        var user_agent_name = background.storage('options-user-agent-name') || 'iPhone - iOS4';
+
         // Init user-agent selections
         for (var name in USER_AGENT_MAPPINGS) {
             $user_agent_name.append($(fmt(TPLS.USER_AGENT_OPTION, name)));
@@ -42,7 +47,7 @@
 
         // Events bindings
         $user_agent_name.on('change', function() { change_user_agent($(this).val()); });
-        change_user_agent('iPhone - iOS4'); 
+        change_user_agent(user_agent_name); 
         
         $save.on('click', save_settings);
     }

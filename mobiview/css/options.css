@@ -8,5 +8,5 @@
     padding: 8px 18px; background: #F8F8F8; } 
 
 #messages { display: none; color: #468847; background-color: #dff0d8; margin-right: 10px; padding: 1px 5px; }
-#user-agent-name { width: 100px; }
-#user-agent-value { width: 300px; }
+#user-agent-name { width: 150px; }
+#user-agent-value { width: 250px; }
